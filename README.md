@@ -24,7 +24,9 @@ over automatically.
 
 1. Click the green **Code** button (top of this page) → **Download ZIP**, and
    extract it anywhere.
-2. Right-click **`install.ps1`** → **Run with PowerShell**.
+2. Double-click **`install.bat`**.
+   - If Windows shows a blue "Windows protected your PC" box, click
+     **More info → Run anyway** (it appears for any unsigned download).
    - The script first shows you a summary of what it will change and waits
      for you to press Enter.
    - Windows will then show an administrator (UAC) prompt — that's needed to
@@ -32,6 +34,9 @@ over automatically.
      made automatically first.
 3. SimAppPro restarts by itself. Select **DCS** on the vibration page — the
    **F-14B(U)** tile is now in the aircraft row. Fights on!
+
+Prefer a terminal? `powershell -ExecutionPolicy Bypass -File .\install.ps1`
+from the extracted folder does the same thing.
 
 Want more buffet, earlier? Switch your device to **Advanced** in SimAppPro
 and drag the curves around in the built-in editor.
