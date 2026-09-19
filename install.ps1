@@ -8,10 +8,23 @@
 #      WinWing's own F-14B profile already in YOUR SimAppPro installation.
 #   3. If you tuned custom F-14B curves, carries them over to the F-14B(U).
 #
-# Run:  Right-click -> "Run with PowerShell", or from a terminal:
+# Run:  Double-click install.bat (easiest), or from a terminal:
 #       powershell -ExecutionPolicy Bypass -File .\install.ps1
 
 $ErrorActionPreference = 'Stop'
+
+# If anything fails, show the error and wait - never let the window vanish.
+trap {
+    Write-Host ""
+    Write-Host "ERROR: $_" -ForegroundColor Red
+    Write-Host "Setup did not finish. Nothing after this point was changed."
+    Read-Host "Press Enter to close"
+    exit 1
+}
+
+# Files extracted from a GitHub ZIP carry Windows' "downloaded from the
+# internet" mark; clear it so the elevated re-launch below isn't blocked.
+Get-ChildItem -LiteralPath $PSScriptRoot -Recurse -File | Unblock-File -ErrorAction SilentlyContinue
 
 # ---- tell the user what is about to happen, and ask first --------------------
 $isAdmin = ([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)
